@@ -1,116 +1,145 @@
 <html>
-  <head>
-    <title>Stardew Valley Name Generator</title>
-    <style>
-      @font-face {
-        font-family: Stardew;
-        src: url(Stardew_Valley.ttf);
-      }
-      body {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        width: 100vw;
-        position: relative;
-        margin: 0;
-        padding: 0;
-        --shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
-        background-color: #fff8ef;
-      }
-      section {
-        transform: translateY(-20vh);
-      }
-      body, input, h1 {
-        font-family: Stardew, sans-serif;
-        color: #492922;
-      }
-      h1 {
-        font-size: 40px;
-      }
-      input,
-      button {
-        font-size: 40px;
-      }
-      button {
-        height: 80px;
-        width: 80px;
-        cursor: pointer;
-        padding: 10px;
-        border-radius: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        user-select: none;
-        border: 0;
-        background: 0;
-        outline: 0;
-        user-select: none;
-        touch-action: manipulation; /* should disable tap zoom */
-        /* text-shadow: var(--shadow);; */
-      }
-      button:hover,
-      button:focus-visible {
-        font-size: 45px;
-      }
-      input {
-        width: 100%;
-        height: 80px;
-        border: 5px outset #c27323;
-        border-radius: 10px;
-        padding-left: 15px;
-        background: linear-gradient(#f9cb8a, #e9b478);
-        text-shadow: var(--shadow);
-        box-shadow: var(--shadow), inset var(--shadow);
-      }
-      .input-container {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        max-width: 500px;
-        padding-bottom: 5px;
-        overflow: hidden;
-      }
-      section {
-        padding: 10px;
-      }
-      p {
-        position: absolute;
-        bottom: 10px;
-        left: 10px; 
-        font-size: 12px;
-        max-width: 500px;
-        font-family: monospace;
-        margin: 0;
-      }
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
-  </head>
-  <body>
-    <section>
-      <h1>Stardew Valley Name Generator</h1>
-      <div class="input-container">
-        <input id="output" length="5"></input>
-        <button id="go">🎲</button>
-      </div>
-    </section>
-    <p>Ported to JS by <a href="https://twitter.com/nickells">Nick</a>, source code decompiled by <a href="https://github.com/AdamMcIntosh/StawdewValley/blob/31967c9ec25ff89f426b585d52cf59aa3faf9d31/Dialogue.cs#L982-L1270">Adam McIntosh</a> and originally written by <a href="https://twitter.com/ConcernedApe">ConcernedApe</a>. Font from <a href="https://www.reddit.com/r/StardewValley/comments/4dtgp7/by_popular_request_a_stardew_valley_font_for_your/">u/Cowsplay</a>.</p>
-    <script src="namer.js"></script>
-    <script>
-      const go = document.getElementById('go')
-      const out = document.getElementById('output')
-      const rotates = [0, 120, 240]
-      let count = 0;
-      go.addEventListener('click', () => {
-        out.value = namer()
-        count++
-        go.style.transform = `rotate(${rotates[count % 3]}deg)`;
-      })
 
+<head>
+  <title>Stardew Valley Name Generator</title>
+  <style>
+    @font-face {
+      font-family: Stardew;
+      src: url(Stardew_Valley.ttf);
+    }
+
+    body {
+      --shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
+      width: 100vw;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      background-color: #fff8ef;
+    }
+
+    section {
+      transform: translateY(-20vh);
+    }
+
+    body,
+    input,
+    h1 {
+      font-family: Stardew, sans-serif;
+      color: #492922;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    input,
+    button {
+      font-size: 40px;
+    }
+
+    button {
+      height: 80px;
+      width: 80px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      border: 0;
+      background: 0;
+      outline: 0;
+      user-select: none;
+      touch-action: manipulation;
+      /* should disable tap zoom */
+      /* text-shadow: var(--shadow);; */
+    }
+
+    button:hover,
+    button:focus-visible {
+      font-size: 45px;
+    }
+
+    input {
+      width: 100%;
+      height: 80px;
+      border: 5px outset #c27323;
+      border-radius: 10px;
+      padding-left: 15px;
+      background: linear-gradient(#f9cb8a, #e9b478);
+      text-shadow: var(--shadow);
+      box-shadow: var(--shadow), inset var(--shadow);
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      padding-bottom: 5px;
+      overflow: hidden;
+    }
+
+    section {
+      padding: 10px;
+    }
+
+    p {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      max-width: 500px;
+      font-family: monospace;
+      margin: 0;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+
+<body>
+  <section>
+    <h1>Stardew Valley Name Generator</h1>
+    <div class="input-container">
+      <input id="output" length="5"></input>
+      <button id="go">🎲</button>
+    </div>
+  </section>
+  <p>Ported to JS by <a href="https://twitter.com/nickells">Nick</a>, source code decompiled by <a
+      href="https://github.com/AdamMcIntosh/StawdewValley/blob/31967c9ec25ff89f426b585d52cf59aa3faf9d31/Dialogue.cs#L982-L1270">Adam
+      McIntosh</a> and originally written by <a href="https://twitter.com/ConcernedApe">ConcernedApe</a>. Font from <a
+      href="https://www.reddit.com/r/StardewValley/comments/4dtgp7/by_popular_request_a_stardew_valley_font_for_your/">u/Cowsplay</a>.
+  </p>
+  <script src="namer.js"></script>
+  <script>
+    const go = document.getElementById('go')
+    const out = document.getElementById('output')
+    const rotates = [0, 120, 240]
+    let count = 0;
+    go.addEventListener('click', () => {
       out.value = namer()
-      // go.focus()
-      
-    </script>
-  </body>
+      count++
+      go.style.transform = `rotate(${rotates[count % 3]}deg)`;
+    })
+
+    out.value = namer()
+
+    // get height of page so the footer fits
+    // https://css-tricks.com/the-trick-to-viewport-units-on-mobile/
+    const setHeight = () => {
+      let vh = window.innerHeight * 0.01;
+      document.body.style.setProperty('--vh', `${vh}px`);
+    }
+    setHeight()
+    window.addEventListener('resize', setHeight);
+  </script>
+</body>
+
 </html>
