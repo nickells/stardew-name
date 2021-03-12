@@ -220,7 +220,7 @@ function namer(){
       source + connectiveStrings[randoNext(connectiveStrings.length)]
 
     // Stop if greater than the number
-    if (source.length > num) break;
+    if (source.length >= num) break;
   }
 
   let char = ''
