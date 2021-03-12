@@ -17,6 +17,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        user-select: none;
+        border: 0;
+        background: 0;
+        outline: 0;
+        user-select: none;
       }
       input {
         width: 100%;
@@ -44,8 +49,12 @@
     <script>
       const go = document.getElementById('go')
       const out = document.getElementById('output')
+      const rotates = [0, 120, 240]
+      let count = 0;
       go.addEventListener('click', () => {
         out.value = namer()
+        count++
+        go.style.transform = `rotate(${rotates[count % 3]}deg)`;
       })
 
       out.value = namer()
