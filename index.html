@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      input,
+      button {
+        height: 40px;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+      }
+      p {
+        font-size: 12 px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Stardew Valley Name Generator</h1>
+    <div class="container">
+      <input id="output"></input>
+      <button id="go">🎲</button>
+    </div>
+    <script src="namer.js"></script>
+    <script>
+      const go = document.getElementById('go')
+      const out = document.getElementById('output')
+      go.addEventListener('click', () => {
+        out.value = namer()
+      })
+
+      out.value = namer()
+      go.focus()
+      
+    </script>
+    <p>Ported to JS by <a href="https://twitter.com/nickells">Nick</a>, source code extracted by <a href="https://github.com/AdamMcIntosh/StawdewValley/blob/31967c9ec25ff89f426b585d52cf59aa3faf9d31/Dialogue.cs#L982-L1270">Adam McIntosh</a> and originally written by <a href="https://twitter.com/ConcernedApe">ConcernedApe</a></p>
+  </body>
+</html>

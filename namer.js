@@ -54,7 +54,7 @@ const endStrings = [
   "ers",
   "ley"
 ]
-const dictionary1 = {
+const vowelDictionary1 = {
   a: [
     "nie",
     "bell",
@@ -111,7 +111,7 @@ const dictionary1 = {
   ]
 }
 
-const dictionary2 = {
+const vowelDictionary2 = {
   a: [
     "nny",
     "sper",
@@ -223,66 +223,66 @@ function namer(){
     if (source.length > num) break;
   }
 
-  let ch = ''
-  let currentLastLetter = source[source.length - 1] || ''
+  let char = ''
+  let currentLastLetter = source[source.length - 1]
+
+  // if last letter is not a vowel and 50% chance, add some letters
   if (Math.random() < 0.5 && !(vowelStrings.includes(currentLastLetter))) {
     source += endStrings[randoNext(endStrings.length)]
   }
+
+  // otherwise if the last letter is a vowel
   else if (vowelStrings.includes(currentLastLetter)) {
+    // if 80 percent chance
     if (Math.random() < 0.8) {
+      let newCurrentLastLetter = source[source.length - 1]
+      char = newCurrentLastLetter
+
+      // if its short add something from voweldict2
       if (source.length <= 3) {
-        let newCurrentLastLetter = source[source.length - 1]
-        let str2 = source;
 
-        const dictionary3 = dictionary2;
-        const strArray5 = dictionary2[newCurrentLastLetter]
-        ch = newCurrentLastLetter
-
-        let index1 = ch
-
-        const maxValue = dictionary3[index1].length - 1
-
+        const maxValue = vowelDictionary2[char].length - 1
         const index2 = randoNext(maxValue)
+        const str3 = vowelDictionary2[newCurrentLastLetter][index2]
 
-        const str3 = strArray5[index2]
-
-        source = str2 + str3
+        source = source + str3
       }
+      // if its long add something from voweldict1
       else {
-        let newCurrentLastLetter = source[source.length - 1]
-        let str2 = source;
-        const strArray5 = dictionary1[newCurrentLastLetter]
-        const dictionary3 = dictionary1;
-        ch = newCurrentLastLetter
-        const index1 = ch
-        const maxValue = dictionary3[index1].length - 1
+        const maxValue = vowelDictionary1[char].length - 1
         const index2 = randoNext(maxValue)
-        const str3 = strArray5[index2]
-        source = str2 + str3
+        const str3 = vowelDictionary1[newCurrentLastLetter][index2]
+
+        source = source + str3
       }
     }
   }
+  // otherwise add a vowel
   else {
     source += vowelStrings[randoNext(vowelStrings.length)]
   }
 
-  // from end of the source
+  // from end of the source, every character
   for (let index = source.length - 1; index > 2; index--) {
 
-    // get the character at the end
-    ch = source[index];
+    // get the character
+    char = source[index];
     
-    const str2 = ch
+    // if its a vowel
+    if (vowelStrings.includes(char)) {
 
-    // if strArray5 includes the last character
-    if (vowelStrings.includes(str2)) {
-      ch = source[index - 2]
-      const str3 = ch;
-      // if vowelStrings includes the character two from the end
-      if (vowelStrings.includes(str3)) {
-        // get last char
-        ch = source[index - 1]
-        switch (ch) {
+      // get the two to last letter
+      char = source[index - 2]
+      
+      // if its also a vowel
+      if (vowelStrings.includes(char)) {
+        
+        // find the letter in between and add a letter to it
+
+        // so "noco" turns into "nocko" etc
+
+        char = source[index - 1]
+        switch (char) {
           case 'c':
             source = source.substring(0, index) + 'k' + source.substring(index);
             --index;
@@ -312,6 +312,7 @@ function namer(){
     source+= Math.random() < 0.3 ? 'm' : ( Math.random() < 0.5 ? 'p' : 'b')
   }
 
+  // blacklist words
   [
     'sex',
     'taboo',
@@ -337,5 +338,3 @@ function namer(){
 
   return source
 }
-
-console.log(namer())
